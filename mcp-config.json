@@ -1,0 +1,53 @@
+{
+  "mcpServers": {
+    "secondhand-malta": {
+      "command": "node",
+      "args": ["dist/index.js"],
+      "description": "MCP server for secondhand.com.mt integration",
+      "capabilities": {
+        "tools": {
+          "search_listings": {
+            "description": "Search for listings on secondhand.com.mt",
+            "parameters": {
+              "query": "string (optional) - Search keywords",
+              "category": "string (optional) - Filter by category",
+              "location": "string (optional) - Filter by Malta location",
+              "minPrice": "number (optional) - Minimum price filter",
+              "maxPrice": "number (optional) - Maximum price filter",
+              "limit": "number (optional) - Results limit (default: 20)"
+            }
+          },
+          "get_listing_details": {
+            "description": "Get detailed information about a specific listing",
+            "parameters": {
+              "listingId": "string (required) - The ID of the listing"
+            }
+          },
+          "get_categories": {
+            "description": "Retrieve all available categories",
+            "parameters": {}
+          },
+          "get_locations": {
+            "description": "Get list of Malta locations",
+            "parameters": {}
+          }
+        }
+      },
+      "env": {
+        "USER_AGENT": "secondhand-malta-mcp/1.0.0",
+        "REQUEST_DELAY_MS": "1000",
+        "RATE_LIMIT_REQUESTS_PER_MINUTE": "30",
+        "CACHE_TTL_SECONDS": "300",
+        "LOG_LEVEL": "info"
+      }
+    }
+  },
+  "version": "1.0.0",
+  "metadata": {
+    "name": "Secondhand Malta MCP Configuration",
+    "description": "Configuration for connecting to secondhand.com.mt marketplace",
+    "author": "EpicGrowth",
+    "website": "https://github.com/EpicGrowth/secondhand-malta-mcp",
+    "tags": ["malta", "marketplace", "classified-ads", "secondhand"]
+  }
+}
