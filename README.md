@@ -1,151 +1,192 @@
-# Secondhand Malta MCP Server
+# Secondhand.com.mt - Complete Marketplace Platform
 
-A Model Context Protocol (MCP) server for interacting with secondhand.com.mt, Malta's classified ads marketplace.
+A comprehensive e-commerce platform built specifically for the Malta secondhand market, featuring a powerful Vendure backend, modern React storefront, and intelligent data aggregation capabilities.
 
-## Features
+## 🌟 Project Overview
 
-- 🔍 Search listings by category, location, and keywords
-- 📋 Get detailed listing information
-- 🏷️ Browse categories and subcategories
-- 📊 Get marketplace statistics and trends
-- 🔄 Real-time data fetching with caching
-- ⚡ Rate limiting and respectful scraping
+This repository transforms from a simple MCP server into a full-featured marketplace platform that will revolutionize secondhand shopping in Malta. Built with modern technologies and designed specifically for the unique needs of Malta's classified ads market.
 
-## Installation
+## 🏗️ Architecture
 
-```bash
-# Clone the repository
-git clone https://github.com/EpicGrowth/secondhand-malta-mcp.git
-cd secondhand-malta-mcp
-
-# Install dependencies
-npm install
-
-# Copy environment variables
-cp .env.example .env
-
-# Build the project
-npm run build
-
-# Start the server
-npm start
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   React/Remix   │    │  Vendure Server │    │   MCP Server    │
+│   Storefront    │◄──►│   (GraphQL)     │◄──►│ (Data Aggreg.) │
+│                 │    │                 │    │                 │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+        │                        │                        │
+        └────────────────────────┼────────────────────────┘
+                                 ▼
+                      ┌─────────────────┐
+                      │   Database      │
+                      │   (SQLite/SQL)  │
+                      └─────────────────┘
 ```
 
-## Development
+## 📁 Project Structure
 
-```bash
-# Run in development mode
-npm run dev
-
-# Run tests
-npm test
+```
+secondhand-malta-mcp/
+├── 🔌 mcp-server/                  # Data aggregation & external integrations
+│   ├── src/index.ts                # MCP server implementation
+│   └── package.json                # MCP dependencies
+│
+├── ⚙️ vendure-server/             # E-commerce backend (Vendure)
+│   ├── src/
+│   │   ├── index.ts                # Server entry point
+│   │   └── vendure-config.ts       # Malta-specific configuration
+│   └── package.json                # Backend dependencies
+│
+├── 🛍️ storefront/                 # Frontend marketplace (Coming Soon)
+│   ├── app/                        # React/Remix application
+│   └── package.json                # Frontend dependencies
+│
+├── 🔧 shared/                      # Shared utilities & types
+│   ├── types/                      # TypeScript definitions
+│   └── constants/                  # Malta-specific constants
+│
+└── 📖 docs/                        # Documentation
+    ├── setup.md                    # Setup instructions
+    └── development.md              # Development guide
 ```
 
-## MCP Tools
+## ✨ Features
 
-### `search_listings`
-Search for listings on secondhand.com.mt
+### 🇲🇹 Malta-Specific Features
+- **Euro currency** integration
+- **Malta locations** (Valletta, Sliema, St. Julian's, etc.)
+- **Local categories** (Cars, Property, Electronics for Malta market)
+- **Malta postal codes** and delivery areas
+- **Local payment methods** (BOV, HSBC Malta)
 
-**Parameters:**
-- `query` (string): Search keywords
-- `category` (string, optional): Filter by category
-- `location` (string, optional): Filter by location in Malta
-- `minPrice` (number, optional): Minimum price filter
-- `maxPrice` (number, optional): Maximum price filter
-- `limit` (number, optional): Number of results to return (default: 20)
+### 🛒 Secondhand Marketplace Features
+- **Item condition ratings** (New, Like New, Good, Fair, Poor)
+- **Best offer system** for negotiations
+- **Seller profiles** with ratings and reviews
+- **Photo galleries** with multiple angles
+- **Pickup locations** throughout Malta
+- **Original price tracking**
 
-### `get_listing_details`
-Get detailed information about a specific listing
+### 🚀 Technical Features
+- **GraphQL API** powered by Vendure
+- **Real-time search** and filtering
+- **Admin dashboard** for management
+- **Mobile-responsive** design
+- **SEO optimized** for Malta market
+- **Data aggregation** from external sources via MCP
 
-**Parameters:**
-- `listingId` (string): The ID of the listing
+## 🚀 Getting Started
 
-### `get_categories`
-Retrieve all available categories and subcategories
+### Prerequisites
+- Node.js (v18 or later)
+- npm or yarn
+- Git
 
-### `get_locations`
-Get list of Malta locations available for filtering
+### Quick Start
 
-### `get_marketplace_stats`
-Get general statistics about the marketplace (total listings, popular categories, etc.)
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/EpicGrowth/secondhand-malta-mcp.git
+   cd secondhand-malta-mcp
+   ```
 
-## Configuration
+2. **Open in VS Code:**
+   ```bash
+   code secondhand-malta.code-workspace
+   ```
 
-The server can be configured through environment variables:
+3. **Install dependencies:**
+   ```bash
+   # Install MCP server dependencies
+   cd mcp-server && npm install
 
-- `USER_AGENT`: Custom user agent for requests
-- `REQUEST_DELAY_MS`: Delay between requests (default: 1000ms)
-- `MAX_RETRIES`: Maximum retry attempts for failed requests
-- `RATE_LIMIT_REQUESTS_PER_MINUTE`: Rate limiting (default: 30)
-- `CACHE_TTL_SECONDS`: Cache time-to-live (default: 300 seconds)
-- `LOG_LEVEL`: Logging level (default: info)
+   # Install Vendure server dependencies
+   cd ../vendure-server && npm install
+   ```
 
-## Ethical Usage
+4. **Start development servers:**
+   ```bash
+   # Start Vendure server
+   cd vendure-server
+   npm run dev
 
-This MCP server is designed to:
-- Respect the website's robots.txt and terms of service
-- Implement proper rate limiting
-- Cache results to minimize server load
-- Use appropriate delays between requests
-- Provide attribution when using data
+   # Start MCP server (in another terminal)
+   cd mcp-server
+   npm run dev
+   ```
 
-## Contributing
+5. **Access the applications:**
+   - **Admin UI**: http://localhost:3000/admin
+   - **Shop API**: http://localhost:3000/shop-api
+   - **Admin API**: http://localhost:3000/admin-api
+
+## 🛠️ Development Roadmap
+
+### ✅ Phase 1: Foundation (Completed)
+- [x] Repository restructure
+- [x] Vendure server setup
+- [x] Malta-specific configuration
+- [x] VS Code workspace setup
+
+### 🚧 Phase 2: Core Marketplace (In Progress)
+- [ ] React/Remix storefront
+- [ ] User authentication
+- [ ] Product listing functionality
+- [ ] Search and filtering
+- [ ] Basic user profiles
+
+### 📋 Phase 3: Malta Features (Planned)
+- [ ] Malta locations integration
+- [ ] Local payment methods
+- [ ] Shipping/pickup options
+- [ ] Malta-specific categories
+- [ ] Local SEO optimization
+
+### 🎯 Phase 4: Advanced Features (Planned)
+- [ ] Best offer system
+- [ ] Seller ratings
+- [ ] Chat/messaging
+- [ ] Mobile app (PWA)
+- [ ] AI-powered recommendations
+
+### 🔗 Phase 5: Integration (Planned)
+- [ ] MCP server integration
+- [ ] External data aggregation
+- [ ] Price comparison
+- [ ] Market analytics
+- [ ] Cross-platform posting
+
+## 🎨 Design Goals
+
+- **🇲🇹 Local First**: Built specifically for Malta's market
+- **📱 Mobile-First**: Optimized for mobile shopping
+- **🔒 Trust & Safety**: Verification and rating systems
+- **⚡ Performance**: Fast loading and responsive
+- **🌊 Modern UI**: Clean, intuitive design
+- **🔍 Discoverability**: SEO and search optimized
+
+## 🤝 Contributing
+
+This is an open-source project! We welcome contributions from the Malta tech community.
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Submit a pull request
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## License
+## 📜 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Disclaimer
+## 🙏 Acknowledgments
 
-This is an unofficial integration. Please ensure you comply with secondhand.com.mt's terms of service when using this tool.
+- Built on [Vendure](https://vendure.io) e-commerce framework
+- Inspired by the need for a modern Malta marketplace
+- Powered by the Malta tech community
 
-## Getting Started with MCP
+---
 
-To use this server with Claude or other MCP-compatible tools:
+**🚀 Ready to revolutionize secondhand shopping in Malta!**
 
-1. Build and start the server
-2. Configure your MCP client to connect to this server
-3. Use the available tools to search and browse listings
-
-### Example Usage
-
-```javascript
-// Search for furniture in Valletta
-const results = await callTool('search_listings', {
-  query: 'sofa',
-  category: 'Furniture',
-  location: 'Valletta',
-  maxPrice: 200
-});
-
-// Get details for a specific listing
-const details = await callTool('get_listing_details', {
-  listingId: 'listing-123'
-});
-
-// Get all available categories
-const categories = await callTool('get_categories', {});
-```
-
-## Current Limitations
-
-- Due to robots.txt restrictions, the current implementation uses mock data
-- To access real data, you would need:
-  - Permission from the site owner
-  - Official API access
-  - Alternative data sources
-
-## Future Enhancements
-
-- Real web scraping implementation (with proper permissions)
-- Image analysis and OCR for better listing details
-- Price tracking and alerts
-- Advanced filtering and sorting options
-- Geolocation-based search
-- Integration with other Malta marketplace sites
+For setup instructions, see [docs/setup.md](docs/setup.md)
