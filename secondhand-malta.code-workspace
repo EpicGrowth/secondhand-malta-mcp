@@ -1,0 +1,133 @@
+{
+  "folders": [
+    {
+      "name": "🏠 Root",
+      "path": "."
+    },
+    {
+      "name": "🔌 MCP Server",
+      "path": "./mcp-server"
+    },
+    {
+      "name": "⚙️ Vendure Server",
+      "path": "./vendure-server"
+    },
+    {
+      "name": "🛍️ Storefront",
+      "path": "./storefront"
+    }
+  ],
+  "settings": {
+    "typescript.preferences.includePackageJsonAutoImports": "auto",
+    "typescript.suggest.autoImports": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/.git": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/.git": true
+    },
+    "typescript.preferences.quoteStyle": "single",
+    "javascript.preferences.quoteStyle": "single"
+  },
+  "extensions": {
+    "recommendations": [
+      "esbenp.prettier-vscode",
+      "ms-vscode.vscode-typescript-next",
+      "bradlc.vscode-tailwindcss",
+      "ms-vscode.vscode-json",
+      "yzhang.markdown-all-in-one",
+      "ms-vscode.vscode-eslint",
+      "formulahendry.auto-rename-tag",
+      "christian-kohler.path-intellisense",
+      "ms-vscode.vscode-docker"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Install All Dependencies",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "install:all"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Start Development Servers",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "dev"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Build All Projects",
+        "type": "shell",
+        "command": "npm",
+        "args": ["run", "build:all"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": ["$tsc"]
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug Vendure Server",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/vendure-server/dist/index.js",
+        "outFiles": ["${workspaceFolder}/vendure-server/dist/**/*.js"],
+        "env": {
+          "NODE_ENV": "development"
+        },
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen"
+      },
+      {
+        "name": "Debug MCP Server",
+        "type": "node",
+        "request": "launch",
+        "program": "${workspaceFolder}/mcp-server/dist/index.js",
+        "outFiles": ["${workspaceFolder}/mcp-server/dist/**/*.js"],
+        "env": {
+          "NODE_ENV": "development"
+        },
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen"
+      }
+    ]
+  }
+}
